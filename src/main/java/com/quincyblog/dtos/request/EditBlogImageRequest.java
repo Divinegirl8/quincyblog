@@ -5,8 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class BlogPostRequest {
+public class EditBlogImageRequest {
     private String url;
-    private String description;
-    private String postNumber;
 }

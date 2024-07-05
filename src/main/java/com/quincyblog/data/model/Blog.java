@@ -15,6 +15,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Setter
 @Getter
+@ToString
 public class Blog {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -22,4 +23,5 @@ public class Blog {
     private String url;
     @Column(length = 10000)
     private String description;
+    private String postNumber;
 }
