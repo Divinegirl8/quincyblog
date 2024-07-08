@@ -43,4 +43,16 @@ public class CommentApp implements CommentService {
         return commentRepository.findAll();
 
     }
+
+    @Override
+    public void deleteAll() {
+      commentRepository.deleteAll();
+    }
+
+    @Override
+    public void deleteComment(Long id) throws Exception {
+        Comment comment = commentRepository.findById(id).orElseThrow(() -> new BlogPostException("Blog not found"));
+
+        commentRepository.delete(comment);
+    }
 }

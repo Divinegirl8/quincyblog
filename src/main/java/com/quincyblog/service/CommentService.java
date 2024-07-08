@@ -9,4 +9,7 @@ import java.util.List;
 public interface CommentService {
     void makeAComment(Long blogId, CommentRequest commentRequest) throws BlogPostException;
     List<Comment> findAllComment();
+    void deleteAll();
+
+    void deleteComment(Long id) throws Exception;
 }

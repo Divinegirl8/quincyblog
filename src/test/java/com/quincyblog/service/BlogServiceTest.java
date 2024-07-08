@@ -173,11 +173,12 @@ class BlogServiceTest {
      blogService.editBlogImage(multipartFile,1L);
     }
 
-    @Test void testDeleteCommentFromBlog() throws Exception {
-        DeleteBlogCommentRequest request = new DeleteBlogCommentRequest();
-        request.setBlogId(1L);
-        request.setCommentId(1L);
-        blogService.deleteBlogComment(request);
+    @Test void testThatABlogCanBeDeleted() throws BlogPostException {
+        blogService.deleteBlog(1L);
+    }
+
+    @Test void testThatAllBlogsCanBeDeleted(){
+        blogService.deleteAllBlog();
     }
 
 }

@@ -20,5 +20,5 @@ public interface BlogService {
     void editBlog(EditBlogRequest editBlogRequest) throws BlogPostException, IOException;
     void  editBlogImage(MultipartFile multipartFile,Long id) throws IOException, BlogPostException;
 
-    void deleteBlogComment(DeleteBlogCommentRequest commentRequest) throws Exception;
+
 }

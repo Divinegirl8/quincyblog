@@ -111,18 +111,7 @@ public class BlogApp implements BlogService {
 
     }
 
-    @Override
-    public void deleteBlogComment(DeleteBlogCommentRequest commentRequest) throws Exception {
-      Blog blog = blogRepository.findById(commentRequest.getBlogId()).orElseThrow(()-> new BlogPostException("Blog not found"));
-        Comment comment = commentRepository.findById(commentRequest.getCommentId()).orElseThrow(() -> new BlogPostException("Comment not found"));
 
-        for (Comment comment1 : blog.getComments()){
-            if (Objects.equals(comment1.getId(), comment.getId())){
-                commentRepository.delete(comment1);
-            }
-        }
-
-    }
 
     private void validatePostNumber(String number) throws BlogPostException {
 
