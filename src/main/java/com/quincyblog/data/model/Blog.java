@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Builder
@@ -23,6 +24,6 @@ public class Blog {
     @Column(length = 10000)
     private String description;
     private String postNumber;
-    @OneToMany(fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER ,cascade = {PERSIST,DETACH,REMOVE})
     private List<Comment> comments;
 }

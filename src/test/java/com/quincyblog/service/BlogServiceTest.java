@@ -2,6 +2,7 @@ package com.quincyblog.service;
 
 import com.quincyblog.data.model.Blog;
 import com.quincyblog.dtos.request.BlogPostRequest;
+import com.quincyblog.dtos.request.DeleteBlogCommentRequest;
 import com.quincyblog.dtos.request.EditBlogRequest;
 import com.quincyblog.exceptions.BlogPostException;
 import lombok.extern.slf4j.Slf4j;
@@ -170,6 +171,13 @@ class BlogServiceTest {
         MultipartFile multipartFile = new MockMultipartFile("filename",inputStream);
 
      blogService.editBlogImage(multipartFile,1L);
+    }
+
+    @Test void testDeleteCommentFromBlog() throws Exception {
+        DeleteBlogCommentRequest request = new DeleteBlogCommentRequest();
+        request.setBlogId(1L);
+        request.setCommentId(1L);
+        blogService.deleteBlogComment(request);
     }
 
 }

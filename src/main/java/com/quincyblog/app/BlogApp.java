@@ -1,8 +1,11 @@
 package com.quincyblog.app;
 
 import com.quincyblog.data.model.Blog;
+import com.quincyblog.data.model.Comment;
 import com.quincyblog.data.repositories.BlogRepository;
+import com.quincyblog.data.repositories.CommentRepository;
 import com.quincyblog.dtos.request.BlogPostRequest;
+import com.quincyblog.dtos.request.DeleteBlogCommentRequest;
 import com.quincyblog.dtos.request.EditBlogImageRequest;
 import com.quincyblog.dtos.request.EditBlogRequest;
 import com.quincyblog.exceptions.BlogPostException;
@@ -18,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import static com.quincyblog.util.NumberEncoder.numberEncoder;
 import static com.quincyblog.util.Validation.validateBlog;
@@ -31,6 +35,8 @@ public class BlogApp implements BlogService {
     private int POST_NUMBER;
     @Autowired
     private CloudinaryApp cloudinaryApp;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Override
     public void post(BlogPostRequest request, MultipartFile multipartFile) throws BlogPostException, IOException {
@@ -102,6 +108,19 @@ public class BlogApp implements BlogService {
         blog.setUrl(imageUrl);}
 
         blogRepository.save(blog);
+
+    }
+
+    @Override
+    public void deleteBlogComment(DeleteBlogCommentRequest commentRequest) throws Exception {
+      Blog blog = blogRepository.findById(commentRequest.getBlogId()).orElseThrow(()-> new BlogPostException("Blog not found"));
+        Comment comment = commentRepository.findById(commentRequest.getCommentId()).orElseThrow(() -> new BlogPostException("Comment not found"));
+
+        for (Comment comment1 : blog.getComments()){
+            if (Objects.equals(comment1.getId(), comment.getId())){
+                commentRepository.delete(comment1);
+            }
+        }
 
     }
 

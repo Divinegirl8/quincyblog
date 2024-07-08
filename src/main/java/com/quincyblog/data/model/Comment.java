@@ -13,6 +13,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Comment {
     @Id
     @GeneratedValue(strategy = IDENTITY)

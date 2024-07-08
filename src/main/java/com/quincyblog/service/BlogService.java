@@ -2,6 +2,7 @@ package com.quincyblog.service;
 
 import com.quincyblog.data.model.Blog;
 import com.quincyblog.dtos.request.BlogPostRequest;
+import com.quincyblog.dtos.request.DeleteBlogCommentRequest;
 import com.quincyblog.dtos.request.EditBlogImageRequest;
 import com.quincyblog.dtos.request.EditBlogRequest;
 import com.quincyblog.exceptions.BlogPostException;
@@ -18,4 +19,6 @@ public interface BlogService {
 
     void editBlog(EditBlogRequest editBlogRequest) throws BlogPostException, IOException;
     void  editBlogImage(MultipartFile multipartFile,Long id) throws IOException, BlogPostException;
+
+    void deleteBlogComment(DeleteBlogCommentRequest commentRequest) throws Exception;
 }
