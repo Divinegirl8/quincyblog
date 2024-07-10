@@ -35,8 +35,7 @@ public class BlogApp implements BlogService {
     private int POST_NUMBER;
     @Autowired
     private CloudinaryApp cloudinaryApp;
-    @Autowired
-    private CommentRepository commentRepository;
+
 
     @Override
     public void post(BlogPostRequest request, MultipartFile multipartFile) throws BlogPostException, IOException {
